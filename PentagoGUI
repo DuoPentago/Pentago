@@ -1,0 +1,62 @@
+import pygame, sys
+from pygame.locals import *
+
+
+
+def fenetre():
+    HAUTEUR =400
+    LARGEUR = 600
+    jeu = pygame.display.set_mode((LARGEUR,HAUTEUR))
+    pygame.display.set_caption("Pentago GUI")
+    WHITE = (255,255,255)
+    BLUE = (0,0,255)
+    GREEN = (0,255,0)
+    RED = (155,0,0)
+    BLACK = (0,0,0)
+    RED1 = (120,0,0)
+    x=25
+    y=25
+    y2=180
+
+#affichage du plateau de jeu
+    while x < 181 and y < 181 :
+        if x==25 and y==25 :
+            quadrant(jeu, RED, RED1, x, y)
+            quadrant(jeu, RED, RED1, x, y2)
+            x+=155
+        elif x==180 and y==25 :
+            quadrant(jeu, RED, RED1, x, y)
+            y+=155
+        elif x==180 and y==180 :
+            quadrant(jeu, RED, RED1, x, y)
+            x+=155
+            y+=155
+
+    inProgress = True
+    while inProgress:
+        for event in pygame.event.get():
+
+            if event.type == QUIT:
+                inProgress = False
+        pygame.display.update()
+    pygame.quit()
+
+def quadrant(jeu, RED, RED1, x, y):
+
+    pygame.draw.rect(jeu, RED, (x,y,150,150))
+
+
+    cer1 = pygame.draw.circle(jeu, RED1, (x+25, y+25), 10)
+    cer2 = pygame.draw.circle(jeu, RED1, (x+75, y+25), 10)
+    cer3 = pygame.draw.circle(jeu, RED1, (x+125, y+25), 10)
+    cer4 = pygame.draw.circle(jeu, RED1, (x+25, y+75), 10)
+    cer5 = pygame.draw.circle(jeu, RED1, (x+75, y+75), 10)
+    cer6 = pygame.draw.circle(jeu, RED1, (x+125, y+75), 10)
+    cer7 = pygame.draw.circle(jeu, RED1, (x+25, y+125), 10)
+    cer8 = pygame.draw.circle(jeu, RED1, (x+75, y+125), 10)
+    cer9 = pygame.draw.circle(jeu, RED1, (x+125, y+125), 10)
+
+
+
+
+fenetre()
