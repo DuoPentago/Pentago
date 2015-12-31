@@ -14,47 +14,83 @@ def fenetre():
     RED = (155,0,0)
     BLACK = (0,0,0)
     RED1 = (120,0,0)
-    x=25
-    y=25
-    y2=180
+    carre = [0,0,0,0]
+    cercle = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    x=0
+    y=0
+    joueurActif=1
 
-#affichage du plateau de jeu
-    while x < 181 and y < 181 :
-        if x==25 and y==25 :
-            quadrant(jeu, RED, RED1, x, y)
-            quadrant(jeu, RED, RED1, x, y2)
-            x+=155
-        elif x==180 and y==25 :
-            quadrant(jeu, RED, RED1, x, y)
-            y+=155
-        elif x==180 and y==180 :
-            quadrant(jeu, RED, RED1, x, y)
-            x+=155
-            y+=155
+    quadrant(jeu,RED,RED1,carre,cercle,x,y)
+
 
     inProgress = True
     while inProgress:
         for event in pygame.event.get():
-
             if event.type == QUIT:
                 inProgress = False
+            aqtour(joueurActif)
+            tour(cercle,event,joueurActif,jeu,WHITE, BLACK)
+            print(joueurActif)
         pygame.display.update()
     pygame.quit()
 
-def quadrant(jeu, RED, RED1, x, y):
+def quadrant(jeu,RED,RED1,carre,cercle,x,y):
+    for i in range(4):
+        if x > 200:
+            x = 0
+            y += 155
+        pygame.draw.rect(jeu, RED, (50+x,50+y,150,150))
+        carre[i] = pygame.Rect(50+x,50+y,150,150)
+        x += 155
 
-    pygame.draw.rect(jeu, RED, (x,y,150,150))
+    x=0
+    y=0
+    for i in range(36):
+        if x > 250:
+            x = 0
+            y += 50
+        pygame.draw.circle(jeu, RED1, (77+x,77+y), 10)
+        cercle[i] = pygame.Rect(77+x,77+y,10,10)
+        x += 50
+
+def aqtour(joueurActif):
+    if joueurActif % 2 == 0 :
+        return 1
+    if joueurActif % 2 == 1 :
+        return 2
 
 
-    cer1 = pygame.draw.circle(jeu, RED1, (x+25, y+25), 10)
-    cer2 = pygame.draw.circle(jeu, RED1, (x+75, y+25), 10)
-    cer3 = pygame.draw.circle(jeu, RED1, (x+125, y+25), 10)
-    cer4 = pygame.draw.circle(jeu, RED1, (x+25, y+75), 10)
-    cer5 = pygame.draw.circle(jeu, RED1, (x+75, y+75), 10)
-    cer6 = pygame.draw.circle(jeu, RED1, (x+125, y+75), 10)
-    cer7 = pygame.draw.circle(jeu, RED1, (x+25, y+125), 10)
-    cer8 = pygame.draw.circle(jeu, RED1, (x+75, y+125), 10)
-    cer9 = pygame.draw.circle(jeu, RED1, (x+125, y+125), 10)
+def tour(cercle,event,joueurActif,jeu,WHITE, BLACK):
+    x=0
+    y=0
+    t=0
+    for i in range (36):
+        if event.type == MOUSEBUTTONDOWN and cercle[i].collidepoint(event.pos):
+            if joueurActif==1 :
+                while t !=i:
+                    if x > 250:
+                        x = 0
+                        y += 50
+                    x+=50
+                    t+=1
+                #cercle[i]+=1
+                cercle[i]= pygame.draw.circle(jeu, WHITE, (77+x,77+y), 10)
+                print (joueurActif)
+
+
+
+
+            elif joueurActif==2 :
+                while t !=i:
+                    if x > 250:
+                        x = 0
+                        y += 50
+                    x+=50
+                    t+=1
+                #cercle[i]+=1
+                cercle[i]= pygame.draw.circle(jeu, BLACK, (77+x,77+y), 10)
+    joueurActif+=1
+    return (joueurActif)
 
 
 
