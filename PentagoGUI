@@ -73,7 +73,7 @@ def tour(cercle,event,joueurActif,jeu,WHITE, BLACK):
                         y += 50
                     x+=50
                     t+=1
-                #cercle[i]+=1
+                #cercle[i]=1
                 cercle[i]= pygame.draw.circle(jeu, WHITE, (77+x,77+y), 10)
                 print (joueurActif)
 
@@ -87,7 +87,7 @@ def tour(cercle,event,joueurActif,jeu,WHITE, BLACK):
                         y += 50
                     x+=50
                     t+=1
-                #cercle[i]+=1
+                #cercle[i]=2
                 cercle[i]= pygame.draw.circle(jeu, BLACK, (77+x,77+y), 10)
     joueurActif+=1
     return (joueurActif)
