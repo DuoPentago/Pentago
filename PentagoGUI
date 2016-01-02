@@ -34,7 +34,7 @@ def fenetre():
                 inProgress = False
             MajQuadrant(cercle,jeu,WHITE,BLACK,liste)
             tour(cercle,event,joueurActif,jeu,WHITE,BLACK,liste)
-            print(liste)
+            #print(liste)
         pygame.display.update()
     pygame.quit()
 
@@ -129,9 +129,14 @@ def AffiFleches (jeu):
     fleche7=pygame.image.load('fleche7.jpg')
     fleche8=pygame.image.load('fleche8.jpg')
 
-    jeu.blit(fleche1,(25,25))
-
-
+    jeu.blit(fleche1,(105,20))
+    jeu.blit(fleche2,(255,20))
+    jeu.blit(fleche3,(360,105))
+    jeu.blit(fleche4,(360,255))
+    jeu.blit(fleche5,(255,360))
+    jeu.blit(fleche6,(105,360))
+    jeu.blit(fleche7,(20,255))
+    jeu.blit(fleche8,(20,105))
 
 
 
