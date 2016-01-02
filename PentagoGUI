@@ -19,6 +19,7 @@ def fenetre():
     cercle = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     liste = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
+
     x=0
     y=0
     joueurActif=[1]
@@ -31,7 +32,9 @@ def fenetre():
         for event in pygame.event.get():
             if event.type == QUIT:
                 inProgress = False
+            MajQuadrant(cercle,jeu,WHITE,BLACK,liste)
             tour(cercle,event,joueurActif,jeu,WHITE,BLACK,liste)
+            print(liste)
         pygame.display.update()
     pygame.quit()
 
@@ -57,10 +60,6 @@ def quadrant(jeu,RED,RED1,carre,cercle,x,y):
 
 
 def tour(cercle,event,joueurActif,jeu,WHITE,BLACK,liste):
-    x=0
-    y=0
-    t=0
-
 
     if joueurActif [0]==1:
         pygame.draw.rect(jeu,BLACK,(400,25,205,50),0)
@@ -84,19 +83,32 @@ def tour(cercle,event,joueurActif,jeu,WHITE,BLACK,liste):
     for i in range (36):
         if event.type == MOUSEBUTTONDOWN and cercle[i].collidepoint(event.pos) and liste[i]==0 :
             if joueurActif [0]==1 :
+                liste[i]=1
+                joueurActif[0]=2
+
+
+
+            elif joueurActif [0]==2 :
+                liste[i]=2
+                joueurActif[0]=1
+
+            AffiFleches(jeu)
+
+def MajQuadrant(cercle,jeu,WHITE,BLACK,liste):
+    x=0
+    y=0
+    t=0
+
+    for i in range (36):
+        if liste[i]==1:
                 while t !=i:
                     if x > 250:
                         x = 0
                         y += 50
                     x+=50
                     t+=1
-
                 cercle[i]= pygame.draw.circle(jeu, WHITE, (77+x,77+y), 10)
-                liste[i]=1
-                joueurActif[0]=2
-
-
-            elif joueurActif [0]==2 :
+        if liste[i]==2:
                 while t !=i:
                     if x > 250:
                         x = 0
@@ -104,6 +116,23 @@ def tour(cercle,event,joueurActif,jeu,WHITE,BLACK,liste):
                     x+=50
                     t+=1
                 cercle[i]= pygame.draw.circle(jeu, BLACK, (77+x,77+y), 10)
-                liste[i]=2
-                joueurActif[0]=1
+
+
+
+def AffiFleches (jeu):
+    fleche1=pygame.image.load('fleche1.jpg')
+    fleche2=pygame.image.load('fleche2.jpg')
+    fleche3=pygame.image.load('fleche3.jpg')
+    fleche4=pygame.image.load('fleche4.jpg')
+    fleche5=pygame.image.load('fleche5.jpg')
+    fleche6=pygame.image.load('fleche6.jpg')
+    fleche7=pygame.image.load('fleche7.jpg')
+    fleche8=pygame.image.load('fleche8.jpg')
+
+    jeu.blit(fleche1,(25,25))
+
+
+
+
+
 fenetre()
