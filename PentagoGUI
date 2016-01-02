@@ -1,11 +1,12 @@
 import pygame, sys
 from pygame.locals import *
+pygame.init()
 
 
 
 def fenetre():
     HAUTEUR =400
-    LARGEUR = 600
+    LARGEUR = 650
     jeu = pygame.display.set_mode((LARGEUR,HAUTEUR))
     pygame.display.set_caption("Pentago GUI")
     WHITE = (255,255,255)
@@ -16,9 +17,11 @@ def fenetre():
     RED1 = (120,0,0)
     carre = [0,0,0,0]
     cercle = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    liste = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
     x=0
     y=0
-    joueurActif=1
+    joueurActif=[1]
 
     quadrant(jeu,RED,RED1,carre,cercle,x,y)
 
@@ -28,11 +31,10 @@ def fenetre():
         for event in pygame.event.get():
             if event.type == QUIT:
                 inProgress = False
-            aqtour(joueurActif)
-            tour(cercle,event,joueurActif,jeu,WHITE, BLACK)
-            print(joueurActif)
+            tour(cercle,event,joueurActif,jeu,WHITE,BLACK,liste)
         pygame.display.update()
     pygame.quit()
+
 
 def quadrant(jeu,RED,RED1,carre,cercle,x,y):
     for i in range(4):
@@ -53,46 +55,55 @@ def quadrant(jeu,RED,RED1,carre,cercle,x,y):
         cercle[i] = pygame.Rect(77+x,77+y,10,10)
         x += 50
 
-def aqtour(joueurActif):
-    if joueurActif % 2 == 0 :
-        return 1
-    if joueurActif % 2 == 1 :
-        return 2
 
-
-def tour(cercle,event,joueurActif,jeu,WHITE, BLACK):
+def tour(cercle,event,joueurActif,jeu,WHITE,BLACK,liste):
     x=0
     y=0
     t=0
+
+
+    if joueurActif [0]==1:
+        pygame.draw.rect(jeu,BLACK,(400,25,205,50),0)
+        fontObj = pygame.font.Font('freesansbold.ttf',20)
+        texteSurface = fontObj.render('Poser un pion blanc' ,True,WHITE,BLACK)
+        texteRect = texteSurface.get_rect()
+        pygame.draw.rect(jeu,WHITE,(400,25,205,50),2)
+        texteRect.topleft = (405,40)
+        jeu.blit(texteSurface,texteRect)
+
+    elif joueurActif [0]==2:
+        pygame.draw.rect(jeu,BLACK,(400,25,205,50),0)
+        fontObj = pygame.font.Font('freesansbold.ttf',20)
+        texteSurface = fontObj.render('Poser un pion noir',True,WHITE,BLACK)
+        texteRect = texteSurface.get_rect()
+        pygame.draw.rect(jeu,WHITE,(400,25,205,50),2)
+        texteRect.topleft = (415,40)
+        jeu.blit(texteSurface,texteRect)
+
+
     for i in range (36):
-        if event.type == MOUSEBUTTONDOWN and cercle[i].collidepoint(event.pos):
-            if joueurActif==1 :
+        if event.type == MOUSEBUTTONDOWN and cercle[i].collidepoint(event.pos) and liste[i]==0 :
+            if joueurActif [0]==1 :
                 while t !=i:
                     if x > 250:
                         x = 0
                         y += 50
                     x+=50
                     t+=1
-                #cercle[i]=1
+
                 cercle[i]= pygame.draw.circle(jeu, WHITE, (77+x,77+y), 10)
-                print (joueurActif)
+                liste[i]=1
+                joueurActif[0]=2
 
 
-
-
-            elif joueurActif==2 :
+            elif joueurActif [0]==2 :
                 while t !=i:
                     if x > 250:
                         x = 0
                         y += 50
                     x+=50
                     t+=1
-                #cercle[i]=2
                 cercle[i]= pygame.draw.circle(jeu, BLACK, (77+x,77+y), 10)
-    joueurActif+=1
-    return (joueurActif)
-
-
-
-
+                liste[i]=2
+                joueurActif[0]=1
 fenetre()
