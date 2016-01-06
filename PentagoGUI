@@ -1,12 +1,13 @@
 import pygame, sys
 from pygame.locals import *
+import copy
 pygame.init()
 
 
 
 def fenetre():
-    HAUTEUR =400
-    LARGEUR = 650
+    HAUTEUR =525
+    LARGEUR = 700
     jeu = pygame.display.set_mode((LARGEUR,HAUTEUR))
     pygame.display.set_caption("Pentago GUI")
     WHITE = (255,255,255)
@@ -15,16 +16,16 @@ def fenetre():
     RED = (155,0,0)
     BLACK = (0,0,0)
     RED1 = (120,0,0)
-    carre = [0,0,0,0]
-    cercle = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    liste = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    liste = [[0]*6 for i in range (6)]
+    liste1 = copy.deepcopy(liste)
+    b=len(liste)
 
 
-    x=0
-    y=0
+
+
     joueurActif=[1]
 
-    quadrant(jeu,RED,RED1,carre,cercle,x,y)
+    quadrant(jeu,RED,RED1,liste1,b)
 
 
     inProgress = True
@@ -32,34 +33,46 @@ def fenetre():
         for event in pygame.event.get():
             if event.type == QUIT:
                 inProgress = False
-            MajQuadrant(cercle,jeu,WHITE,BLACK,liste)
-            tour(cercle,event,joueurActif,jeu,WHITE,BLACK,liste)
-            #print(liste)
+            MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1)
+            tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1)
+            print(liste)
+
         pygame.display.update()
     pygame.quit()
 
 
-def quadrant(jeu,RED,RED1,carre,cercle,x,y):
-    for i in range(4):
-        if x > 200:
-            x = 0
-            y += 155
-        pygame.draw.rect(jeu, RED, (50+x,50+y,150,150))
-        carre[i] = pygame.Rect(50+x,50+y,150,150)
-        x += 155
+def quadrant(jeu,RED,RED1,liste1,b):
+
+    n=len(liste1)/2
+
+    pygame.draw.rect(jeu, RED, (50,50,50*n,50*n))
+
+    pygame.draw.rect(jeu, RED, (n*50+55,50,50*n,50*n))
+
+    pygame.draw.rect(jeu, RED, (50,n*50+55,50*n,50*n))
+
+    pygame.draw.rect(jeu, RED, (n*50+55,n*50+55,50*n,50*n))
+
+
 
     x=0
     y=0
-    for i in range(36):
-        if x > 250:
-            x = 0
-            y += 50
-        pygame.draw.circle(jeu, RED1, (77+x,77+y), 10)
-        cercle[i] = pygame.Rect(77+x,77+y,10,10)
-        x += 50
+    for i in range(b):
+        for a in range (b):
 
 
-def tour(cercle,event,joueurActif,jeu,WHITE,BLACK,liste):
+
+            #pygame.draw.circle(jeu, RED1, (77+i*x,77+a*y), 10)
+            if x > 45*b:
+                x = 0
+                y += 50
+            pygame.draw.circle(jeu, RED1, (75+x,75+y), 10)
+            liste1[i][a] = pygame.Rect(75+x,75+y,10,10)
+            x += 50
+
+
+
+def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1):
 
     if joueurActif [0]==1:
         pygame.draw.rect(jeu,BLACK,(400,25,205,50),0)
@@ -80,42 +93,38 @@ def tour(cercle,event,joueurActif,jeu,WHITE,BLACK,liste):
         jeu.blit(texteSurface,texteRect)
 
 
-    for i in range (36):
-        if event.type == MOUSEBUTTONDOWN and cercle[i].collidepoint(event.pos) and liste[i]==0 :
-            if joueurActif [0]==1 :
-                liste[i]=1
-                joueurActif[0]=2
-
-
-
-            elif joueurActif [0]==2 :
-                liste[i]=2
-                joueurActif[0]=1
-
-            AffiFleches(jeu)
-
-def MajQuadrant(cercle,jeu,WHITE,BLACK,liste):
     x=0
     y=0
     t=0
 
-    for i in range (36):
-        if liste[i]==1:
-                while t !=i:
-                    if x > 250:
-                        x = 0
-                        y += 50
-                    x+=50
-                    t+=1
-                cercle[i]= pygame.draw.circle(jeu, WHITE, (77+x,77+y), 10)
-        if liste[i]==2:
-                while t !=i:
-                    if x > 250:
-                        x = 0
-                        y += 50
-                    x+=50
-                    t+=1
-                cercle[i]= pygame.draw.circle(jeu, BLACK, (77+x,77+y), 10)
+    for i in range(b):
+        for a in range (b):
+            if event.type == MOUSEBUTTONDOWN and liste1[i][a].collidepoint(event.pos):
+
+                if joueurActif [0]==1 :
+                    liste[i][a]=1
+                    joueurActif[0]=2
+
+                elif joueurActif [0]==2 :
+                    liste[i][a]=2
+                    joueurActif[0]=1
+
+
+                AffiFleches(jeu)
+
+def MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1):
+    x=50
+    y=50
+
+
+    for i in range (len(liste)):
+        for a in range (b):
+
+            if liste[i][a]==1:
+                pygame.draw.circle(jeu, WHITE, (75+a*x,75+i*y), 10)
+
+            if liste[i][a]==2:
+                pygame.draw.circle(jeu, BLACK, (75+a*x,75+i*y), 10)
 
 
 
