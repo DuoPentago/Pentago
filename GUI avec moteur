@@ -13,7 +13,7 @@ def fenetre():
     RED = (155,0,0)
     BLACK = (0,0,0)
     RED1 = (120,0,0)
-    liste = [[0]*6 for i in range (6)]
+    liste = [[0]*8 for i in range (8)]
     liste1 = copy.deepcopy(liste)
     b=len(liste)
 
@@ -64,41 +64,36 @@ def quadrant(jeu,RED,RED1,liste1,b):
 
 def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1):
 
-    n = 6
 
-    rfle1 = pygame.draw.rect(jeu,BLACK,(17*n,3*n,43,25),0)
-    rfle2 = pygame.draw.rect(jeu,BLACK,(42*n,3*n,43,25),0)
-    rfle3 = pygame.draw.rect(jeu,BLACK,(59*n,17*n,25,43),0)
-    rfle4 = pygame.draw.rect(jeu,BLACK,(59*n,42*n,25,43),0)
-    rfle5 = pygame.draw.rect(jeu,BLACK,(42*n,59*n,43,25),0)
-    rfle6 = pygame.draw.rect(jeu,BLACK,(17*n,59*n,43,25),0)
-    rfle7 = pygame.draw.rect(jeu,BLACK,(3*n,42*n,25,43),0)
-    rfle8 = pygame.draw.rect(jeu,BLACK,(3*n,17*n,25,43),0)
-    AffiFleches(jeu,BLACK)
+    rfle1 = pygame.draw.rect(jeu,BLACK,(17*b,3*b,43,25),0)
+    rfle2 = pygame.draw.rect(jeu,BLACK,(42*b,3*b,43,25),0)
+    rfle3 = pygame.draw.rect(jeu,BLACK,(59*b,17*b,25,43),0)
+    rfle4 = pygame.draw.rect(jeu,BLACK,(59*b,42*b,25,43),0)
+    rfle5 = pygame.draw.rect(jeu,BLACK,(42*b,59*b,43,25),0)
+    rfle6 = pygame.draw.rect(jeu,BLACK,(17*b,59*b,43,25),0)
+    rfle7 = pygame.draw.rect(jeu,BLACK,(3*b,42*b,25,43),0)
+    rfle8 = pygame.draw.rect(jeu,BLACK,(3*b,17*b,25,43),0)
+    AffiFleches(jeu,BLACK,b)
 
     if joueurActif [0]==1:
 
-        pygame.draw.rect(jeu,BLACK,(66*n,25,205,50),0)
+        pygame.draw.rect(jeu,BLACK,(66*b,25,205,50),0)
         fontObj = pygame.font.Font('freesansbold.ttf',20)
         texteSurface = fontObj.render('Poser un pion blanc' ,True,WHITE,BLACK)
         texteRect = texteSurface.get_rect()
-        pygame.draw.rect(jeu,WHITE,(66*n,25,205,50),2)
-        texteRect.topleft = (67*n,40)
+        pygame.draw.rect(jeu,WHITE,(66*b,25,205,50),2)
+        texteRect.topleft = (67*b,40)
         jeu.blit(texteSurface,texteRect)
 
     elif joueurActif [0]==2:
-        pygame.draw.rect(jeu,BLACK,(66*n,25,205,50),0)
+        pygame.draw.rect(jeu,BLACK,(66*b,25,205,50),0)
         fontObj = pygame.font.Font('freesansbold.ttf',20)
         texteSurface = fontObj.render('Poser un pion noir',True,WHITE,BLACK)
         texteRect = texteSurface.get_rect()
-        pygame.draw.rect(jeu,WHITE,(66*n,25,205,50),2)
-        texteRect.topleft = (67*n,40)
+        pygame.draw.rect(jeu,WHITE,(66*b,25,205,50),2)
+        texteRect.topleft = (67*b,40)
         jeu.blit(texteSurface,texteRect)
 
-
-    x=0
-    y=0
-    t=0
 
     for i in range(b):
         for a in range (b):
@@ -148,8 +143,7 @@ def MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1):
 
 
 
-def AffiFleches (jeu,BLACK):
-    n = 6
+def AffiFleches (jeu,BLACK,b):
     fleche1=pygame.image.load('fleche1.jpg')
     fleche2=pygame.image.load('fleche2.jpg')
     fleche3=pygame.image.load('fleche3.jpg')
@@ -159,14 +153,14 @@ def AffiFleches (jeu,BLACK):
     fleche7=pygame.image.load('fleche7.jpg')
     fleche8=pygame.image.load('fleche8.jpg')
 
-    jeu.blit(fleche1,(17*n,3*n))
-    jeu.blit(fleche2,(42*n,3*n))
-    jeu.blit(fleche3,(59*n,17*n))
-    jeu.blit(fleche4,(59*n,42*n))
-    jeu.blit(fleche5,(42*n,59*n))
-    jeu.blit(fleche6,(17*n,59*n))
-    jeu.blit(fleche7,(3*n,42*n))
-    jeu.blit(fleche8,(3*n,17*n))
+    jeu.blit(fleche1,(17*b,3*b))
+    jeu.blit(fleche2,(42*b,3*b))
+    jeu.blit(fleche3,(59*b,17*b))
+    jeu.blit(fleche4,(59*b,42*b))
+    jeu.blit(fleche5,(42*b,59*b))
+    jeu.blit(fleche6,(17*b,59*b))
+    jeu.blit(fleche7,(3*b,42*b))
+    jeu.blit(fleche8,(3*b,17*b))
 
 def rotation(liste,cadran,sens):
 
