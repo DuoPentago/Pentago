@@ -16,8 +16,8 @@ def fenetre():
     liste = [[0]*8 for i in range (8)]
     liste1 = copy.deepcopy(liste)
     b=len(liste)
-
     joueurActif=[1]
+    flecheOK=[0]
 
     quadrant(jeu,RED,RED1,liste1,b)
 
@@ -28,7 +28,7 @@ def fenetre():
             if event.type == QUIT:
                 inProgress = False
             MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1)
-            tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1)
+            tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK)
             print(liste)
 
         pygame.display.update()
@@ -62,7 +62,7 @@ def quadrant(jeu,RED,RED1,liste1,b):
 
 
 
-def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1):
+def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
 
 
     rfle1 = pygame.draw.rect(jeu,BLACK,(17*b,3*b,43,25),0)
@@ -73,7 +73,6 @@ def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1):
     rfle6 = pygame.draw.rect(jeu,BLACK,(17*b,59*b,43,25),0)
     rfle7 = pygame.draw.rect(jeu,BLACK,(3*b,42*b,25,43),0)
     rfle8 = pygame.draw.rect(jeu,BLACK,(3*b,17*b,25,43),0)
-    AffiFleches(jeu,BLACK,b)
 
     if joueurActif [0]==1:
 
@@ -97,33 +96,47 @@ def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1):
 
     for i in range(b):
         for a in range (b):
-            if event.type == MOUSEBUTTONDOWN and liste1[i][a].collidepoint(event.pos):
+            if event.type == MOUSEBUTTONDOWN and liste1[i][a].collidepoint(event.pos) and liste[i][a]== 0 and flecheOK[0]==0:
 
                 if joueurActif [0]==1 :
                     liste[i][a]=1
                     joueurActif[0] = 2
+                    flecheOK[0]=1
 
                 elif joueurActif [0]==2 :
                     liste[i][a]=2
                     joueurActif[0]=1
+                    flecheOK[0]=1
 
-    if event.type == MOUSEBUTTONDOWN:
-        if rfle1.collidepoint(event.pos):
+
+    if flecheOK [0]==1:
+
+        AffiFleches(jeu,BLACK,b)
+
+        if event.type == MOUSEBUTTONDOWN and rfle1.collidepoint(event.pos):
             rotation(liste,1,True)
-        elif rfle2.collidepoint(event.pos):
+            flecheOK[0]=0
+        if event.type == MOUSEBUTTONDOWN and rfle2.collidepoint(event.pos):
             rotation(liste,2,False)
-        elif rfle3.collidepoint(event.pos):
+            flecheOK[0]=0
+        if event.type == MOUSEBUTTONDOWN and rfle3.collidepoint(event.pos):
             rotation(liste,2,True)
-        elif rfle4.collidepoint(event.pos):
+            flecheOK[0]=0
+        if event.type == MOUSEBUTTONDOWN and rfle4.collidepoint(event.pos):
             rotation(liste,4,False)
-        elif rfle5.collidepoint(event.pos):
+            flecheOK[0]=0
+        if event.type == MOUSEBUTTONDOWN and rfle5.collidepoint(event.pos):
             rotation(liste,4,True)
-        elif rfle6.collidepoint(event.pos):
+            flecheOK[0]=0
+        if event.type == MOUSEBUTTONDOWN and rfle6.collidepoint(event.pos):
             rotation(liste,3,False)
-        elif rfle7.collidepoint(event.pos):
+            flecheOK[0]=0
+        if event.type == MOUSEBUTTONDOWN and rfle7.collidepoint(event.pos):
             rotation(liste,3,True)
-        elif rfle8.collidepoint(event.pos):
+            flecheOK[0]=0
+        if event.type == MOUSEBUTTONDOWN and rfle8.collidepoint(event.pos):
             rotation(liste,1,False)
+            flecheOK[0]=0
 
 
 def MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1):
@@ -140,6 +153,7 @@ def MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1):
 
             if liste[i][a]==2:
                 pygame.draw.circle(jeu, BLACK, (75+a*x,75+i*y), 10)
+
 
 
 
