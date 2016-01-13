@@ -1,6 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 import copy
+import random
 pygame.init()
 
 
@@ -28,19 +29,33 @@ def fenetre():
 
     quadrant(jeu,RED,RED1,liste1,b)
 
+    if nbrJoueur[0]==2:
+        inProgress = True
+        while inProgress:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    inProgress = False
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1)
+                tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK)
+                print(liste)
 
-    inProgress = True
-    while inProgress:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                inProgress = False
-            alignements(jeu,liste,BLACK,WHITE,joueurActif)
-            MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1)
-            tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK)
-            print(liste)
+            pygame.display.update()
+        pygame.quit()
 
-        pygame.display.update()
-    pygame.quit()
+    elif nbrJoueur[0]==1:
+        inProgress = True
+        while inProgress:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    inProgress = False
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1)
+                tourordi(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK)
+                print(liste)
+
+            pygame.display.update()
+        pygame.quit()
 
 def alignements(jeu,liste,BLACK,WHITE,joueurActif):
     n = 6
@@ -57,6 +72,7 @@ def alignements(jeu,liste,BLACK,WHITE,joueurActif):
                     pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
                     texteRect.topleft = (67*n,315)
                     jeu.blit(texteSurface,texteRect)
+                    fin()
 
         for i in range (n):
            for x in range (n-j+1):
@@ -68,6 +84,7 @@ def alignements(jeu,liste,BLACK,WHITE,joueurActif):
                     pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
                     texteRect.topleft = (67*n,315)
                     jeu.blit(texteSurface,texteRect)
+                    fin()
 
         for i in range (n-j+1):
             for x in range (n-j+1):
@@ -79,6 +96,7 @@ def alignements(jeu,liste,BLACK,WHITE,joueurActif):
                     pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
                     texteRect.topleft = (67*n,315)
                     jeu.blit(texteSurface,texteRect)
+                    fin()
 
         for i in range (n):
             for x in range (n-j+1):
@@ -90,6 +108,7 @@ def alignements(jeu,liste,BLACK,WHITE,joueurActif):
                     pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
                     texteRect.topleft = (67*n,315)
                     jeu.blit(texteSurface,texteRect)
+                    fin()
 
     if joueurActif[0] == 2:
         for i in range(n-j+1):
@@ -102,6 +121,7 @@ def alignements(jeu,liste,BLACK,WHITE,joueurActif):
                     pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
                     texteRect.topleft = (67*n,315)
                     jeu.blit(texteSurface,texteRect)
+                    fin()
 
         for i in range (n):
            for x in range (n-j+1):
@@ -113,6 +133,7 @@ def alignements(jeu,liste,BLACK,WHITE,joueurActif):
                     pygame.draw.rect(jeu,WHITE,(66*n,100,205,50),2)
                     texteRect.topleft = (67*n,315)
                     jeu.blit(texteSurface,texteRect)
+                    fin()
 
         for i in range (n-j+1):
             for x in range (n-j+1):
@@ -124,6 +145,7 @@ def alignements(jeu,liste,BLACK,WHITE,joueurActif):
                     pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
                     texteRect.topleft = (67*n,315)
                     jeu.blit(texteSurface,texteRect)
+                    fin()
 
         for i in range (n):
             for x in range (n-j+1):
@@ -135,7 +157,14 @@ def alignements(jeu,liste,BLACK,WHITE,joueurActif):
                     pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
                     texteRect.topleft = (67*n,315)
                     jeu.blit(texteSurface,texteRect)
+                    fin()
 
+def fin():
+    chrono = 0
+    while chrono < 10000:
+        chrono += 1
+    if chrono == 10000:
+        sys.exit(0)
 
 def quadrant(jeu,RED,RED1,liste1,b):
 
@@ -203,45 +232,210 @@ def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
                 if joueurActif [0]==1 :
                     liste[i][a]=1
                     flecheOK[0]=1
-                    joueurActif[0] = 2
 
                 elif joueurActif [0]==2 :
                     liste[i][a]=2
                     flecheOK[0]=1
-                    joueurActif[0]=1
+
+    if joueurActif[0] ==1:
+        if flecheOK [0]==1:
+
+            AffiFleches(jeu,BLACK,b)
+
+            if event.type == MOUSEBUTTONDOWN and rfle1.collidepoint(event.pos):
+                rotation(liste,1,True)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle2.collidepoint(event.pos):
+                rotation(liste,2,False)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle3.collidepoint(event.pos):
+                rotation(liste,2,True)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle4.collidepoint(event.pos):
+                rotation(liste,4,False)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle5.collidepoint(event.pos):
+                rotation(liste,4,True)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle6.collidepoint(event.pos):
+                rotation(liste,3,False)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle7.collidepoint(event.pos):
+                rotation(liste,3,True)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle8.collidepoint(event.pos):
+                rotation(liste,1,False)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+
+    if joueurActif[0] ==2:
+        if flecheOK [0]==1:
+
+            AffiFleches(jeu,BLACK,b)
+
+            if event.type == MOUSEBUTTONDOWN and rfle1.collidepoint(event.pos):
+                rotation(liste,1,True)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle2.collidepoint(event.pos):
+                rotation(liste,2,False)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle3.collidepoint(event.pos):
+                rotation(liste,2,True)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle4.collidepoint(event.pos):
+                rotation(liste,4,False)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle5.collidepoint(event.pos):
+                rotation(liste,4,True)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle6.collidepoint(event.pos):
+                rotation(liste,3,False)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle7.collidepoint(event.pos):
+                rotation(liste,3,True)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle8.collidepoint(event.pos):
+                rotation(liste,1,False)
+                joueurActif[0] = 1
+                flecheOK[0]=0
 
 
-    if flecheOK [0]==1:
+def tourordi(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
 
-        AffiFleches(jeu,BLACK,b)
+    rfle1 = pygame.draw.rect(jeu,BLACK,(17*b,3*b,43,25),0)
+    rfle2 = pygame.draw.rect(jeu,BLACK,(42*b,3*b,43,25),0)
+    rfle3 = pygame.draw.rect(jeu,BLACK,(59*b+1,17*b,25,43),0)
+    rfle4 = pygame.draw.rect(jeu,BLACK,(59*b+1,42*b,25,43),0)
+    rfle5 = pygame.draw.rect(jeu,BLACK,(42*b,59*b+1,43,25),0)
+    rfle6 = pygame.draw.rect(jeu,BLACK,(17*b,59*b+1,43,25),0)
+    rfle7 = pygame.draw.rect(jeu,BLACK,(3*b,42*b,25,43),0)
+    rfle8 = pygame.draw.rect(jeu,BLACK,(3*b,17*b,25,43),0)
 
-        if event.type == MOUSEBUTTONDOWN and rfle1.collidepoint(event.pos):
-            rotation(liste,1,True)
-            flecheOK[0]=0
-        if event.type == MOUSEBUTTONDOWN and rfle2.collidepoint(event.pos):
-            rotation(liste,2,False)
-            flecheOK[0]=0
-        if event.type == MOUSEBUTTONDOWN and rfle3.collidepoint(event.pos):
-            rotation(liste,2,True)
-            flecheOK[0]=0
-        if event.type == MOUSEBUTTONDOWN and rfle4.collidepoint(event.pos):
-            rotation(liste,4,False)
-            flecheOK[0]=0
-        if event.type == MOUSEBUTTONDOWN and rfle5.collidepoint(event.pos):
-            rotation(liste,4,True)
-            flecheOK[0]=0
-        if event.type == MOUSEBUTTONDOWN and rfle6.collidepoint(event.pos):
-            rotation(liste,3,False)
-            flecheOK[0]=0
-        if event.type == MOUSEBUTTONDOWN and rfle7.collidepoint(event.pos):
-            rotation(liste,3,True)
-            flecheOK[0]=0
-        if event.type == MOUSEBUTTONDOWN and rfle8.collidepoint(event.pos):
-            rotation(liste,1,False)
-            flecheOK[0]=0
+    if joueurActif [0]==1:
+
+        pygame.draw.rect(jeu,BLACK,(66*b,25,205,50),0)
+        fontObj = pygame.font.Font('freesansbold.ttf',20)
+        texteSurface = fontObj.render('Poser un pion blanc' ,True,WHITE,BLACK)
+        texteRect = texteSurface.get_rect()
+        pygame.draw.rect(jeu,WHITE,(66*b,25,205,50),2)
+        texteRect.topleft = (67*b,40)
+        jeu.blit(texteSurface,texteRect)
 
 
+    for i in range(b):
+        for a in range (b):
+            if event.type == MOUSEBUTTONDOWN and liste1[i][a].collidepoint(event.pos) and liste[i][a]== 0 and flecheOK[0]==0:
 
+                if joueurActif [0]==1 :
+                    liste[i][a]=1
+                    flecheOK[0]=1
+
+    if joueurActif [0]==2 :
+        pygame.draw.rect(jeu,BLACK,(66*b,25,205,50),0)
+        fontObj = pygame.font.Font('freesansbold.ttf',20)
+        texteSurface = fontObj.render("Pose d'un pion noir",True,WHITE,BLACK)
+        texteRect = texteSurface.get_rect()
+        pygame.draw.rect(jeu,WHITE,(66*b,25,205,50),2)
+        texteRect.topleft = (67*b,40)
+        jeu.blit(texteSurface,texteRect)
+        i = random.randint(0,b-1)
+        a = random.randint(0,b-1)
+        liste[i][a]=2
+        sens = random.choice([True, False])
+        cadran = random.randint(1,4)
+        rotation(liste,cadran,sens)
+        joueurActif[0]=1
+
+
+    if joueurActif[0] ==1:
+        if flecheOK [0]==1:
+
+            AffiFleches(jeu,BLACK,b)
+
+            if event.type == MOUSEBUTTONDOWN and rfle1.collidepoint(event.pos):
+                rotation(liste,1,True)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle2.collidepoint(event.pos):
+                rotation(liste,2,False)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle3.collidepoint(event.pos):
+                rotation(liste,2,True)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle4.collidepoint(event.pos):
+                rotation(liste,4,False)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle5.collidepoint(event.pos):
+                rotation(liste,4,True)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle6.collidepoint(event.pos):
+                rotation(liste,3,False)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle7.collidepoint(event.pos):
+                rotation(liste,3,True)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle8.collidepoint(event.pos):
+                rotation(liste,1,False)
+                joueurActif[0] = 2
+                flecheOK[0]=0
+
+    if joueurActif[0] ==2:
+        if flecheOK [0]==1:
+
+            AffiFleches(jeu,BLACK,b)
+
+            if event.type == MOUSEBUTTONDOWN and rfle1.collidepoint(event.pos):
+                rotation(liste,1,True)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle2.collidepoint(event.pos):
+                rotation(liste,2,False)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle3.collidepoint(event.pos):
+                rotation(liste,2,True)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle4.collidepoint(event.pos):
+                rotation(liste,4,False)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle5.collidepoint(event.pos):
+                rotation(liste,4,True)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle6.collidepoint(event.pos):
+                rotation(liste,3,False)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle7.collidepoint(event.pos):
+                rotation(liste,3,True)
+                joueurActif[0] = 1
+                flecheOK[0]=0
+            if event.type == MOUSEBUTTONDOWN and rfle8.collidepoint(event.pos):
+                rotation(liste,1,False)
+                joueurActif[0] = 1
+                flecheOK[0]=0
 
 def MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1):
     x=50
@@ -445,8 +639,6 @@ def menu2 (jeu,WHITE,BLACK,nbrJoueur):
     jeu.blit(texteSurface,texteRect)
 
 
-
-
     inProgress = True
     while inProgress:
         for event in pygame.event.get():
@@ -460,11 +652,5 @@ def menu2 (jeu,WHITE,BLACK,nbrJoueur):
                 return
         pygame.display.update()
     pygame.quit()
-
-
-
-
-
-
 
 fenetre()
