@@ -123,48 +123,48 @@ def alignements(jeu,liste,BLACK,WHITE,joueurActif):
         for i in range(n-j+1):
             for x in range(n):
                 if liste[x][i] == liste[x][i+1] == liste[x][i+2] == liste[x][i+3] == liste[x][i+4]and liste[x][i] != 0:
-                    pygame.draw.rect(jeu,BLACK,(66*n,300,205,50),0)
+                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
                     fontObj = pygame.font.Font('freesansbold.ttf',20)
                     texteSurface = fontObj.render('Le joueur 1 a gagné' ,True,WHITE,BLACK)
                     texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
-                    texteRect.topleft = (67*n,315)
+                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
+                    texteRect.topleft = (67*n,215)
                     jeu.blit(texteSurface,texteRect)
                     fin()
 
         for i in range (n):
            for x in range (n-j+1):
                if liste[x][i] == liste[x+1][i] == liste[x+2][i] == liste[x+3][i] == liste[x+4][i]and liste[x][i] != 0:
-                    pygame.draw.rect(jeu,BLACK,(66*n,300,205,50),0)
+                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
                     fontObj = pygame.font.Font('freesansbold.ttf',20)
                     texteSurface = fontObj.render('Le joueur 1 a gagné' ,True,WHITE,BLACK)
                     texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
-                    texteRect.topleft = (67*n,315)
+                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
+                    texteRect.topleft = (67*n,215)
                     jeu.blit(texteSurface,texteRect)
                     fin()
 
         for i in range (n-j+1):
             for x in range (n-j+1):
                 if liste[x][i] == liste[x+1][i+1] == liste[x+2][i+2] == liste[x+3][i+3] == liste[x+4][i+4]and liste[x][i] != 0:
-                    pygame.draw.rect(jeu,BLACK,(66*n,300,205,50),0)
+                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
                     fontObj = pygame.font.Font('freesansbold.ttf',20)
                     texteSurface = fontObj.render('Le joueur 1 a gagné' ,True,WHITE,BLACK)
                     texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
-                    texteRect.topleft = (67*n,315)
+                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
+                    texteRect.topleft = (67*n,215)
                     jeu.blit(texteSurface,texteRect)
                     fin()
 
         for i in range (n):
             for x in range (n-j+1):
                 if liste[x][i] == liste[x+1][i-1] == liste[x+2][i-2] == liste[x+3][i-3] == liste[x+4][i-4]and liste[x][i] != 0:
-                    pygame.draw.rect(jeu,BLACK,(66*n,300,205,50),0)
+                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
                     fontObj = pygame.font.Font('freesansbold.ttf',20)
                     texteSurface = fontObj.render('Le joueur 1 a gagné' ,True,WHITE,BLACK)
                     texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
-                    texteRect.topleft = (67*n,315)
+                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
+                    texteRect.topleft = (67*n,215)
                     jeu.blit(texteSurface,texteRect)
                     fin()
 
@@ -172,56 +172,55 @@ def alignements(jeu,liste,BLACK,WHITE,joueurActif):
         for i in range(n-j+1):
             for x in range(n):
                 if liste[x][i] == liste[x][i+1] == liste[x][i+2] == liste[x][i+3] == liste[x][i+4]and liste[x][i] != 0:
-                    pygame.draw.rect(jeu,BLACK,(66*n,300,205,50),0)
+                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
                     fontObj = pygame.font.Font('freesansbold.ttf',20)
                     texteSurface = fontObj.render('Le joueur 2 a gagné' ,True,WHITE,BLACK)
                     texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
-                    texteRect.topleft = (67*n,315)
+                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
+                    texteRect.topleft = (67*n,215)
                     jeu.blit(texteSurface,texteRect)
                     fin()
 
         for i in range (n):
            for x in range (n-j+1):
                if liste[x][i] == liste[x+1][i] == liste[x+2][i] == liste[x+3][i] == liste[x+4][i]and liste[x][i] != 0:
-                    pygame.draw.rect(jeu,BLACK,(66*n,315,205,50),0)
+                    pygame.draw.rect(jeu,BLACK,(66*n,215,205,50),0)
                     fontObj = pygame.font.Font('freesansbold.ttf',20)
                     texteSurface = fontObj.render('Le joueur 2 a gagné' ,True,WHITE,BLACK)
                     texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,100,205,50),2)
-                    texteRect.topleft = (67*n,315)
+                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
+                    texteRect.topleft = (67*n,215)
                     jeu.blit(texteSurface,texteRect)
                     fin()
 
         for i in range (n-j+1):
             for x in range (n-j+1):
                 if liste[x][i] == liste[x+1][i+1] == liste[x+2][i+2] == liste[x+3][i+3] == liste[x+4][i+4] and liste[x][i] != 0:
-                    pygame.draw.rect(jeu,BLACK,(66*n,300,205,50),0)
+                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
                     fontObj = pygame.font.Font('freesansbold.ttf',20)
                     texteSurface = fontObj.render('Le joueur 2 a gagné' ,True,WHITE,BLACK)
                     texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
-                    texteRect.topleft = (67*n,315)
+                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
+                    texteRect.topleft = (67*n,215)
                     jeu.blit(texteSurface,texteRect)
                     fin()
 
         for i in range (n):
             for x in range (n-j+1):
                 if liste[x][i] == liste[x+1][i-1] == liste[x+2][i-2] == liste[x+3][i-3] == liste[x+4][i-4]and liste[x][i] != 0:
-                    pygame.draw.rect(jeu,BLACK,(66*n,300,205,50),0)
+                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
                     fontObj = pygame.font.Font('freesansbold.ttf',20)
                     texteSurface = fontObj.render('Le joueur 2 a gagné' ,True,WHITE,BLACK)
                     texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,300,205,50),2)
-                    texteRect.topleft = (67*n,315)
+                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
+                    texteRect.topleft = (67*n,215)
                     jeu.blit(texteSurface,texteRect)
                     fin()
 
 def fin():
     chrono = 0
-    while chrono < 10000:
-        chrono += 1
-    if chrono == 10000:
+    chrono += 1
+    if chrono == 100000000000:
         sys.exit(0)
 
 def quadrant(jeu,RED,RED1,liste1,b):
@@ -709,12 +708,12 @@ def menu2 (jeu,WHITE,BLACK,nbrJoueur):
     pygame.quit()
 
 def sauvegarde(jeu,b,BLACK,WHITE,liste,event,flecheOK,joueurActif):
-    sauvegarde = pygame.draw.rect(jeu,BLACK,(66*b,250,205,50),0)
+    sauvegarde = pygame.draw.rect(jeu,BLACK,(66*b,275,205,50),0)
     fontObj = pygame.font.Font('freesansbold.ttf',25)
     texteSurface = fontObj.render('Sauvegarder',True,WHITE,BLACK)
     texteRect = texteSurface.get_rect()
-    pygame.draw.rect(jeu,WHITE,(66*b,250,205,50),2)
-    texteRect.topleft = (69*b+4,263)
+    pygame.draw.rect(jeu,WHITE,(66*b,275,205,50),2)
+    texteRect.topleft = (69*b+4,287)
     jeu.blit(texteSurface,texteRect)
 
     if event.type == MOUSEBUTTONDOWN and sauvegarde.collidepoint(event.pos) and flecheOK[0]==0 :
