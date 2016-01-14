@@ -3,6 +3,7 @@ from pygame.locals import *
 import copy
 import random
 pygame.init()
+import pickle
 
 
 def fenetre():
@@ -20,7 +21,6 @@ def fenetre():
     pygame.draw.rect(jeu,BLACK,(0,0,800,525),0)
     menu2 (jeu,WHITE,BLACK,nbrJoueur)
     pygame.draw.rect(jeu,BLACK,(0,0,800,525),0)
-
     liste = [[0]*n[0] for i in range (n[0])]
     liste1 = copy.deepcopy(liste)
     b=len(liste)
@@ -35,13 +35,38 @@ def fenetre():
             for event in pygame.event.get():
                 if event.type == QUIT:
                     inProgress = False
+                sauvegarde(jeu,b,BLACK,WHITE,liste,event)
+
+                ChargSauve = pygame.draw.rect(jeu,BLACK,(66*b,350,145,50),0)
+                fontObj = pygame.font.Font('freesansbold.ttf',25)
+                texteSurface = fontObj.render('Charger',True,WHITE,BLACK)
+                texteRect = texteSurface.get_rect()
+                pygame.draw.rect(jeu,WHITE,(66*b,350,145,50),2)
+                texteRect.topleft = (69*b+4,363)
+                jeu.blit(texteSurface,texteRect)
+
+                if event.type == MOUSEBUTTONDOWN and ChargSauve.collidepoint(event.pos):
+
+                    if b==6:
+                        with open('6x6.txt', 'rb') as fichier:
+                            mon_depickler = pickle.Unpickler(fichier)
+                            liste = mon_depickler.load()
+
+                    if b==8:
+                        with open('8x8.txt', 'rb') as fichier:
+                            mon_depickler = pickle.Unpickler(fichier)
+                            liste = mon_depickler.load()
+
                 alignements(jeu,liste,BLACK,WHITE,joueurActif)
                 MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1)
                 tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK)
-                print(liste)
+                #print(liste)
 
             pygame.display.update()
         pygame.quit()
+
+
+
 
     elif nbrJoueur[0]==1:
         inProgress = True
@@ -49,10 +74,25 @@ def fenetre():
             for event in pygame.event.get():
                 if event.type == QUIT:
                     inProgress = False
+                sauvegarde(jeu,b,BLACK,WHITE,liste,event)
+
+                ChargSauve = pygame.draw.rect(jeu,BLACK,(66*b,350,145,50),0)
+                fontObj = pygame.font.Font('freesansbold.ttf',25)
+                texteSurface = fontObj.render('Charger',True,WHITE,BLACK)
+                texteRect = texteSurface.get_rect()
+                pygame.draw.rect(jeu,WHITE,(66*b,350,145,50),2)
+                texteRect.topleft = (69*b+4,363)
+                jeu.blit(texteSurface,texteRect)
+
+                if event.type == MOUSEBUTTONDOWN and ChargSauve.collidepoint(event.pos):
+
+                    with open('6x6.txt', 'rb') as fichier:
+                        mon_depickler = pickle.Unpickler(fichier)
+                        liste = mon_depickler.load()
+
                 alignements(jeu,liste,BLACK,WHITE,joueurActif)
                 MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1)
                 tourordi(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK)
-                print(liste)
 
             pygame.display.update()
         pygame.quit()
@@ -171,11 +211,8 @@ def quadrant(jeu,RED,RED1,liste1,b):
     n=len(liste1)/2
 
     pygame.draw.rect(jeu, RED, (50,50,50*n,50*n))
-
     pygame.draw.rect(jeu, RED, (n*50+55,50,50*n,50*n))
-
     pygame.draw.rect(jeu, RED, (50,n*50+55,50*n,50*n))
-
     pygame.draw.rect(jeu, RED, (n*50+55,n*50+55,50*n,50*n))
 
     x=0
@@ -652,5 +689,26 @@ def menu2 (jeu,WHITE,BLACK,nbrJoueur):
                 return
         pygame.display.update()
     pygame.quit()
+
+def sauvegarde(jeu,b,BLACK,WHITE,liste,event):
+    sauvegarde = pygame.draw.rect(jeu,BLACK,(66*b,250,205,50),0)
+    fontObj = pygame.font.Font('freesansbold.ttf',25)
+    texteSurface = fontObj.render('Sauvegarder',True,WHITE,BLACK)
+    texteRect = texteSurface.get_rect()
+    pygame.draw.rect(jeu,WHITE,(66*b,250,205,50),2)
+    texteRect.topleft = (69*b+4,263)
+    jeu.blit(texteSurface,texteRect)
+
+    if event.type == MOUSEBUTTONDOWN and sauvegarde.collidepoint(event.pos):
+
+
+        if b==6:
+            with open('6x6.txt','wb') as fichier:
+                mon_pickler = pickle.Pickler(fichier)
+                mon_pickler.dump(liste)
+        if b==8:
+            with open('8x8.txt','wb') as fichier:
+                mon_pickler = pickle.Pickler(fichier)
+                mon_pickler.dump(liste)
 
 fenetre()
