@@ -1,12 +1,12 @@
 import copy
 
-def rotateright(liste):
-    liste = [list(liste) for liste in (zip(*liste[::-1]))]
-    return liste
-
 def rotateleft(liste):
     liste = [list(liste) for liste in (zip(*liste[::-1]))]
     liste = [list(liste) for liste in (zip(*liste[::-1]))]
+    liste = [list(liste) for liste in (zip(*liste[::-1]))]
+    return liste
+
+def rotateright(liste):
     liste = [list(liste) for liste in (zip(*liste[::-1]))]
     return liste
 
