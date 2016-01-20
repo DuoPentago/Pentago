@@ -63,16 +63,11 @@ def fenetre():
                             mon_depickler1 = pickle.Unpickler(fichier)
                             joueurActif = mon_depickler1.load()
 
-                alignements(jeu,liste,BLACK,WHITE,joueurActif)
                 MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
                 tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK)
-                #print(liste)
-
             pygame.display.update()
         pygame.quit()
-
-
-
 
     elif nbrJoueur[0]==1:
         inProgress = True
@@ -123,106 +118,75 @@ def alignements(jeu,liste,BLACK,WHITE,joueurActif):
         for i in range(n-j+1):
             for x in range(n):
                 if liste[x][i] == liste[x][i+1] == liste[x][i+2] == liste[x][i+3] == liste[x][i+4]and liste[x][i] != 0 and liste[x][i]==1:
-                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
-                    fontObj = pygame.font.Font('freesansbold.ttf',20)
-                    texteSurface = fontObj.render('Le joueur 1 a gagné' ,True,WHITE,BLACK)
-                    texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
-                    texteRect.topleft = (67*n,215)
-                    jeu.blit(texteSurface,texteRect)
-                    fin()
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n):
            for x in range (n-j+1):
                if liste[x][i] == liste[x+1][i] == liste[x+2][i] == liste[x+3][i] == liste[x+4][i]and liste[x][i] != 0 and liste[x][i]==1:
-                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
-                    fontObj = pygame.font.Font('freesansbold.ttf',20)
-                    texteSurface = fontObj.render('Le joueur 1 a gagné' ,True,WHITE,BLACK)
-                    texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
-                    texteRect.topleft = (67*n,215)
-                    jeu.blit(texteSurface,texteRect)
-                    fin()
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n-j+1):
             for x in range (n-j+1):
                 if liste[x][i] == liste[x+1][i+1] == liste[x+2][i+2] == liste[x+3][i+3] == liste[x+4][i+4]and liste[x][i] != 0 and liste[x][i]==1:
-                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
-                    fontObj = pygame.font.Font('freesansbold.ttf',20)
-                    texteSurface = fontObj.render('Le joueur 1 a gagné' ,True,WHITE,BLACK)
-                    texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
-                    texteRect.topleft = (67*n,215)
-                    jeu.blit(texteSurface,texteRect)
-                    fin()
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n):
             for x in range (n-j+1):
                 if liste[x][i] == liste[x+1][i-1] == liste[x+2][i-2] == liste[x+3][i-3] == liste[x+4][i-4]and liste[x][i] != 0 and liste[x][i]==1:
-                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
-                    fontObj = pygame.font.Font('freesansbold.ttf',20)
-                    texteSurface = fontObj.render('Le joueur 1 a gagné' ,True,WHITE,BLACK)
-                    texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
-                    texteRect.topleft = (67*n,215)
-                    jeu.blit(texteSurface,texteRect)
-                    fin()
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
     if joueurActif[0] == 2:
         for i in range(n-j+1):
             for x in range(n):
                 if liste[x][i] == liste[x][i+1] == liste[x][i+2] == liste[x][i+3] == liste[x][i+4]and liste[x][i] != 0 and liste[x][i]==2:
-                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
-                    fontObj = pygame.font.Font('freesansbold.ttf',20)
-                    texteSurface = fontObj.render('Le joueur 2 a gagné' ,True,WHITE,BLACK)
-                    texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
-                    texteRect.topleft = (67*n,215)
-                    jeu.blit(texteSurface,texteRect)
-                    fin()
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n):
            for x in range (n-j+1):
                if liste[x][i] == liste[x+1][i] == liste[x+2][i] == liste[x+3][i] == liste[x+4][i]and liste[x][i] != 0 and liste[x][i]==2:
-                    pygame.draw.rect(jeu,BLACK,(66*n,215,205,50),0)
-                    fontObj = pygame.font.Font('freesansbold.ttf',20)
-                    texteSurface = fontObj.render('Le joueur 2 a gagné' ,True,WHITE,BLACK)
-                    texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
-                    texteRect.topleft = (67*n,215)
-                    jeu.blit(texteSurface,texteRect)
-                    fin()
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n-j+1):
             for x in range (n-j+1):
                 if liste[x][i] == liste[x+1][i+1] == liste[x+2][i+2] == liste[x+3][i+3] == liste[x+4][i+4] and liste[x][i] != 0 and liste[x][i]==2:
-                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
-                    fontObj = pygame.font.Font('freesansbold.ttf',20)
-                    texteSurface = fontObj.render('Le joueur 2 a gagné' ,True,WHITE,BLACK)
-                    texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
-                    texteRect.topleft = (67*n,215)
-                    jeu.blit(texteSurface,texteRect)
-                    fin()
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n):
             for x in range (n-j+1):
                 if liste[x][i] == liste[x+1][i-1] == liste[x+2][i-2] == liste[x+3][i-3] == liste[x+4][i-4]and liste[x][i] != 0 and liste[x][i]==2:
-                    pygame.draw.rect(jeu,BLACK,(66*n,200,205,50),0)
-                    fontObj = pygame.font.Font('freesansbold.ttf',20)
-                    texteSurface = fontObj.render('Le joueur 2 a gagné' ,True,WHITE,BLACK)
-                    texteRect = texteSurface.get_rect()
-                    pygame.draw.rect(jeu,WHITE,(66*n,200,205,50),2)
-                    texteRect.topleft = (67*n,215)
-                    jeu.blit(texteSurface,texteRect)
-                    fin()
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
-def fin():
-    """pygame.mixer.init()
-    pygame.mixer.Sound("pkmn-victory-vs-trainer.wav").play()
-    while pygame.mixer.get_busy()
-        pass
-    sys.exit(0)"""
+def fin(jeu,joueurActif,BLACK,WHITE):
+    x = 0
+    x2 = -185
+    fpsClock = pygame.time.Clock()
+    song = pygame.mixer.Sound('pkmn-victory-vs-trainer.wav')
+    song.play()
+    noir = pygame.image.load('rectangle.png')
+    homer = pygame.image.load('homerhourra.png')
+    bravo = pygame.image.load('bravo.png')
+    victoire1 = pygame .image.load('victoire1.png')
+    victoire2 = pygame .image.load('victoire2.png')
+    anim = True
+
+    if joueurActif[0] ==1:
+        while anim :
+            x1 = random.randint(0,400)
+            y1 = random.randint(0,285)
+            jeu.blit(bravo,(x1,y1))
+            jeu.blit(noir,(0,400))
+            x2 += 2
+            x += 2
+            if joueurActif[0] ==1:
+                jeu.blit(victoire1,(x2,460))
+            elif joueurActif[0] ==2:
+                jeu.blit(victoire2,(x2,460))
+            jeu.blit(homer,(x,397))
+            pygame.display.update()
+            fpsClock.tick(30)
+            if x2 >= 800:
+                sys.exit(0)
+
 
 def quadrant(jeu,RED,RED1,liste1,b):
 
@@ -658,9 +622,6 @@ def menu1(jeu,WHITE,BLACK,n):
     jeu.blit(Grille6,(100,132))
     jeu.blit(Grille8,(400,100))
 
-
-
-
     inProgress = True
     while inProgress:
         for event in pygame.event.get():
@@ -721,7 +682,6 @@ def sauvegarde(jeu,b,BLACK,WHITE,liste,event,flecheOK,joueurActif):
     jeu.blit(texteSurface,texteRect)
 
     if event.type == MOUSEBUTTONDOWN and sauvegarde.collidepoint(event.pos) and flecheOK[0]==0 :
-
 
         if b==6:
             with open('6x6.txt','wb') as fichier:
