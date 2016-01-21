@@ -1,4 +1,5 @@
-import pygame, sys
+import pygame
+import sys
 from pygame.locals import *
 import copy
 import random
@@ -185,7 +186,9 @@ def fin(jeu,joueurActif,BLACK,WHITE):
             pygame.display.update()
             fpsClock.tick(30)
             if x2 >= 800:
-                sys.exit(0)
+                fenetre()
+
+
 
 
 def quadrant(jeu,RED,RED1,liste1,b):
@@ -242,6 +245,14 @@ def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
         pygame.draw.rect(jeu,WHITE,(66*b,25,205,50),2)
         texteRect.topleft = (67*b,40)
         jeu.blit(texteSurface,texteRect)
+
+    quit = pygame.draw.rect(jeu,BLACK,(66*b,150,95,50),0)
+    fontObj = pygame.font.Font('freesansbold.ttf',20)
+    texteSurface = fontObj.render('Quitter',True,WHITE,BLACK)
+    texteRect = texteSurface.get_rect()
+    pygame.draw.rect(jeu,WHITE,(66*b,150,95,50),2)
+    texteRect.topleft = (67*b,165)
+    jeu.blit(texteSurface,texteRect)
 
 
     for i in range(b):
@@ -345,6 +356,18 @@ def tourordi(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
     rfle8 = pygame.draw.rect(jeu,BLACK,(3*b,17*b,25,43),0)
 
     if joueurActif [0]==1:
+
+
+        quit = pygame.draw.rect(jeu,BLACK,(66*b,150,95,50),0)
+        fontObj = pygame.font.Font('freesansbold.ttf',20)
+        texteSurface = fontObj.render('Quitter',True,WHITE,BLACK)
+        texteRect = texteSurface.get_rect()
+        pygame.draw.rect(jeu,WHITE,(66*b,150,95,50),2)
+        texteRect.topleft = (67*b,165)
+        jeu.blit(texteSurface,texteRect)
+
+        #if event.type == MOUSEBUTTONDOWN and quit.collidepoint(event.pos):
+
 
         pygame.draw.rect(jeu,BLACK,(66*b,25,205,50),0)
         fontObj = pygame.font.Font('freesansbold.ttf',20)
@@ -614,7 +637,6 @@ def menu1(jeu,WHITE,BLACK,n):
     texteRect = texteSurface.get_rect()
     texteRect.topleft = (175,40)
     jeu.blit(texteSurface,texteRect)
-
     G6 = pygame.draw.rect(jeu,BLACK,(100,132,197,197),0)
     G8 = pygame.draw.rect(jeu,BLACK,(400,100,259,259),0)
     Grille6=pygame.image.load('grille6x6.jpg')
