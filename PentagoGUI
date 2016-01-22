@@ -232,6 +232,19 @@ def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
     rfle7 = pygame.draw.rect(jeu,BLACK,(3*b,42*b,25,43),0)
     rfle8 = pygame.draw.rect(jeu,BLACK,(3*b,17*b,25,43),0)
 
+    quit = pygame.draw.rect(jeu,BLACK,(66*b,150,95,50),0)
+    fontObj = pygame.font.Font('freesansbold.ttf',20)
+    texteSurface = fontObj.render('Quitter',True,WHITE,BLACK)
+    texteRect = texteSurface.get_rect()
+    pygame.draw.rect(jeu,WHITE,(66*b,150,95,50),2)
+    texteRect.topleft = (67*b,165)
+    jeu.blit(texteSurface,texteRect)
+
+    if event.type == MOUSEBUTTONDOWN and quit.collidepoint(event.pos):
+        sys.exit(0)
+    
+
+
     if joueurActif [0]==1:
 
         pygame.draw.rect(jeu,BLACK,(66*b,25,205,50),0)
@@ -250,16 +263,6 @@ def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
         pygame.draw.rect(jeu,WHITE,(66*b,25,205,50),2)
         texteRect.topleft = (67*b,40)
         jeu.blit(texteSurface,texteRect)
-
-    quit = pygame.draw.rect(jeu,BLACK,(66*b,150,95,50),0)
-    fontObj = pygame.font.Font('freesansbold.ttf',20)
-    texteSurface = fontObj.render('Quitter',True,WHITE,BLACK)
-    texteRect = texteSurface.get_rect()
-    pygame.draw.rect(jeu,WHITE,(66*b,150,95,50),2)
-    texteRect.topleft = (67*b,165)
-    jeu.blit(texteSurface,texteRect)
-
-
     for i in range(b):
         for a in range (b):
             if event.type == MOUSEBUTTONDOWN and liste1[i][a].collidepoint(event.pos) and liste[i][a]== 0 and flecheOK[0]==0:
@@ -375,20 +378,19 @@ def tourordi(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
     rfle7 = pygame.draw.rect(jeu,BLACK,(3*b,42*b,25,43),0)
     rfle8 = pygame.draw.rect(jeu,BLACK,(3*b,17*b,25,43),0)
 
+    quit = pygame.draw.rect(jeu,BLACK,(66*b,150,95,50),0)
+    fontObj = pygame.font.Font('freesansbold.ttf',20)
+    texteSurface = fontObj.render('Quitter',True,WHITE,BLACK)
+    texteRect = texteSurface.get_rect()
+    pygame.draw.rect(jeu,WHITE,(66*b,150,95,50),2)
+    texteRect.topleft = (67*b,165)
+    jeu.blit(texteSurface,texteRect)
+
+    if event.type == MOUSEBUTTONDOWN and quit.collidepoint(event.pos):
+        sys.exit(0)
+
+
     if joueurActif [0]==1:
-
-
-        quit = pygame.draw.rect(jeu,BLACK,(66*b,150,95,50),0)
-        fontObj = pygame.font.Font('freesansbold.ttf',20)
-        texteSurface = fontObj.render('Quitter',True,WHITE,BLACK)
-        texteRect = texteSurface.get_rect()
-        pygame.draw.rect(jeu,WHITE,(66*b,150,95,50),2)
-        texteRect.topleft = (67*b,165)
-        jeu.blit(texteSurface,texteRect)
-
-        #if event.type == MOUSEBUTTONDOWN and quit.collidepoint(event.pos):
-
-
         pygame.draw.rect(jeu,BLACK,(66*b,25,205,50),0)
         fontObj = pygame.font.Font('freesansbold.ttf',20)
         texteSurface = fontObj.render('Poser un pion blanc' ,True,WHITE,BLACK)
