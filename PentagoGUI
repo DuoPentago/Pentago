@@ -3,8 +3,8 @@ import sys
 from pygame.locals import *
 import copy
 import random
-pygame.init()
 import pickle
+pygame.init()
 
 
 def fenetre():
@@ -188,9 +188,6 @@ def fin(jeu,joueurActif,BLACK,WHITE):
             if x2 >= 800:
                 fenetre()
 
-
-
-
 def quadrant(jeu,RED,RED1,liste1,b):
 
     n=len(liste1)/2
@@ -213,7 +210,15 @@ def quadrant(jeu,RED,RED1,liste1,b):
             liste1[i][a] = pygame.Rect(75+x,75+y,10,10)
             x += 50
 
-
+def égalité(joueurActif,liste,jeu,WHITE,BLACK,b):
+        if not any(0 in sublist for sublist in liste):
+            pygame.draw.rect(jeu,BLACK,(66*b,25,205,50),0)
+            fontObj = pygame.font.Font('freesansbold.ttf',20)
+            texteSurface = fontObj.render('Match nul !' ,True,WHITE,BLACK)
+            texteRect = texteSurface.get_rect()
+            pygame.draw.rect(jeu,WHITE,(66*b,25,205,50),2)
+            texteRect.topleft = (67*b,40)
+            jeu.blit(texteSurface,texteRect)
 
 def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
 
@@ -274,34 +279,42 @@ def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
 
             if event.type == MOUSEBUTTONDOWN and rfle1.collidepoint(event.pos):
                 rotation(liste,1,True)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle2.collidepoint(event.pos):
                 rotation(liste,2,False)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle3.collidepoint(event.pos):
                 rotation(liste,2,True)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle4.collidepoint(event.pos):
                 rotation(liste,4,False)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle5.collidepoint(event.pos):
                 rotation(liste,4,True)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle6.collidepoint(event.pos):
                 rotation(liste,3,False)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle7.collidepoint(event.pos):
                 rotation(liste,3,True)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle8.collidepoint(event.pos):
                 rotation(liste,1,False)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
 
@@ -312,37 +325,44 @@ def tour(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
 
             if event.type == MOUSEBUTTONDOWN and rfle1.collidepoint(event.pos):
                 rotation(liste,1,True)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle2.collidepoint(event.pos):
                 rotation(liste,2,False)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle3.collidepoint(event.pos):
                 rotation(liste,2,True)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle4.collidepoint(event.pos):
                 rotation(liste,4,False)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle5.collidepoint(event.pos):
                 rotation(liste,4,True)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle6.collidepoint(event.pos):
                 rotation(liste,3,False)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle7.collidepoint(event.pos):
                 rotation(liste,3,True)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle8.collidepoint(event.pos):
                 rotation(liste,1,False)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
-
 
 def tourordi(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
 
@@ -496,7 +516,6 @@ def MajQuadrant(jeu,WHITE,BLACK,liste,b,liste1,RED,RED1):
 
             if liste[i][a]==2:
                 pygame.draw.circle(jeu, BLACK, (75+a*x,75+i*y), 10)
-
 
 def AffiFleches (jeu,BLACK,b):
     fleche1=pygame.image.load('fleche1.jpg')
