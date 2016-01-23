@@ -74,57 +74,47 @@ def fenetre():
 def alignements(jeu,liste,BLACK,WHITE,joueurActif):
     n = 6
     j = 5
-    s = 4
-
     if joueurActif[0] == 1:
         for i in range(n-j+1):
             for x in range(n):
-                for p in range (1,s):
-                    if liste[x][i] == liste[x][i+p] and liste[x][i]==1:
-                        fin(jeu,joueurActif,BLACK,WHITE)
+                if liste[x][i] == liste[x][i+1] == liste[x][i+2] == liste[x][i+3] == liste[x][i+4]and liste[x][i] != 0 and liste[x][i]==1:
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n):
            for x in range (n-j+1):
-               for p in range (1,s):
-                   if liste[x][i] == liste[x+s][i] and liste[x][i]==1:
-                        fin(jeu,joueurActif,BLACK,WHITE)
+               if liste[x][i] == liste[x+1][i] == liste[x+2][i] == liste[x+3][i] == liste[x+4][i]and liste[x][i] != 0 and liste[x][i]==1:
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n-j+1):
             for x in range (n-j+1):
-                for p in range (1,s):
-                    if liste[x][i] == liste[x+s][i+s] and liste[x][i]==1:
-                        fin(jeu,joueurActif,BLACK,WHITE)
+                if liste[x][i] == liste[x+1][i+1] == liste[x+2][i+2] == liste[x+3][i+3] == liste[x+4][i+4]and liste[x][i] != 0 and liste[x][i]==1:
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n):
             for x in range (n-j+1):
-                for p in range (1,s):
-                    if liste[x][i] == liste[x+s][i-s] and liste[x][i]==1:
-                        fin(jeu,joueurActif,BLACK,WHITE)
+                if liste[x][i] == liste[x+1][i-1] == liste[x+2][i-2] == liste[x+3][i-3] == liste[x+4][i-4]and liste[x][i] != 0 and liste[x][i]==1:
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
     if joueurActif[0] == 2:
         for i in range(n-j+1):
             for x in range(n):
-                for p in range (1,s):
-                    if liste[x][i] == liste[x][i+p] and liste[x][i]==2:
-                        fin(jeu,joueurActif,BLACK,WHITE)
+                if liste[x][i] == liste[x][i+1] == liste[x][i+2] == liste[x][i+3] == liste[x][i+4]and liste[x][i] != 0 and liste[x][i]==2:
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n):
            for x in range (n-j+1):
-               for p in range (1,s):
-                   if liste[x][i] == liste[x+s][i] and liste[x][i]==2:
-                        fin(jeu,joueurActif,BLACK,WHITE)
+               if liste[x][i] == liste[x+1][i] == liste[x+2][i] == liste[x+3][i] == liste[x+4][i]and liste[x][i] != 0 and liste[x][i]==2:
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n-j+1):
             for x in range (n-j+1):
-                for p in range (1,s):
-                    if liste[x][i] == liste[x+s][i+s] and liste[x][i]==2:
-                        fin(jeu,joueurActif,BLACK,WHITE)
+                if liste[x][i] == liste[x+1][i+1] == liste[x+2][i+2] == liste[x+3][i+3] == liste[x+4][i+4] and liste[x][i] != 0 and liste[x][i]==2:
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
         for i in range (n):
             for x in range (n-j+1):
-                for p in range (1,s):
-                    if liste[x][i] == liste[x+s][i-s] and liste[x][i]==2:
-                        fin(jeu,joueurActif,BLACK,WHITE)
+                if liste[x][i] == liste[x+1][i-1] == liste[x+2][i-2] == liste[x+3][i-3] == liste[x+4][i-4]and liste[x][i] != 0 and liste[x][i]==2:
+                    fin(jeu,joueurActif,BLACK,WHITE)
 
 def fin(jeu,joueurActif,BLACK,WHITE):
     x = 0
