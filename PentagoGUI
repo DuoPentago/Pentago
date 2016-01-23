@@ -388,6 +388,7 @@ def tourordi(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
         sens = random.choice([True, False])
         cadran = random.randint(1,4)
         rotation(liste,cadran,sens)
+        alignements(jeu,liste,BLACK,WHITE,joueurActif)
         joueurActif[0]=1
 
 
@@ -398,34 +399,50 @@ def tourordi(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
 
             if event.type == MOUSEBUTTONDOWN and rfle1.collidepoint(event.pos):
                 rotation(liste,1,True)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle2.collidepoint(event.pos):
                 rotation(liste,2,False)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle3.collidepoint(event.pos):
                 rotation(liste,2,True)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle4.collidepoint(event.pos):
                 rotation(liste,4,False)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle5.collidepoint(event.pos):
                 rotation(liste,4,True)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle6.collidepoint(event.pos):
                 rotation(liste,3,False)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle7.collidepoint(event.pos):
                 rotation(liste,3,True)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle8.collidepoint(event.pos):
                 rotation(liste,1,False)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 2
                 flecheOK[0]=0
 
@@ -436,34 +453,51 @@ def tourordi(event,joueurActif,jeu,WHITE,BLACK,liste,b,liste1,flecheOK):
 
             if event.type == MOUSEBUTTONDOWN and rfle1.collidepoint(event.pos):
                 rotation(liste,1,True)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle2.collidepoint(event.pos):
                 rotation(liste,2,False)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle3.collidepoint(event.pos):
                 rotation(liste,2,True)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle4.collidepoint(event.pos):
                 rotation(liste,4,False)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle5.collidepoint(event.pos):
                 rotation(liste,4,True)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle6.collidepoint(event.pos):
                 rotation(liste,3,False)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle7.collidepoint(event.pos):
                 rotation(liste,3,True)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
             if event.type == MOUSEBUTTONDOWN and rfle8.collidepoint(event.pos):
                 rotation(liste,1,False)
+                alignements(jeu,liste,BLACK,WHITE,joueurActif)
+                égalité(joueurActif,liste,jeu,WHITE,BLACK,b)
                 joueurActif[0] = 1
                 flecheOK[0]=0
 
